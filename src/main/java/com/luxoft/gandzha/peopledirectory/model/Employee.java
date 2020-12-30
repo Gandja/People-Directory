@@ -27,7 +27,7 @@ public class Employee {
     private String position;
 
     @Column(name = "phone_number")
-    private int phoneNumber;
+    private String phoneNumber;
 
     @Column(name = "email")
     private String email;
