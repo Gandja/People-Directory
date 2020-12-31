@@ -3,7 +3,6 @@ package com.luxoft.gandzha.peopledirectory.controller;
 import com.luxoft.gandzha.peopledirectory.model.Employee;
 import com.luxoft.gandzha.peopledirectory.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -48,16 +47,4 @@ public class EmployeeController {
         employees.addAll(service.findAllByLastName(text));
         return employees;
     }
-
-   /* @GetMapping("/employees/all")
-    public List<Employee> findAllByLastName(@RequestParam("name") String lastName) {
-        List<Employee> employees = service.findAllByLastName(lastName);
-        return employees;
-    }
-
-    @GetMapping("/employees/all/name/lastName")
-    public List<Employee> findAllByNameOrLastName(@RequestParam String name, @RequestParam String lastName) {
-        List<Employee> employees = service.findAllByNameOrLastName(name,lastName);
-        return employees;
-    }*/
 }

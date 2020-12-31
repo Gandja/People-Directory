@@ -3,9 +3,7 @@ package com.luxoft.gandzha.peopledirectory.service;
 import com.luxoft.gandzha.peopledirectory.model.Employee;
 import com.luxoft.gandzha.peopledirectory.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -47,9 +45,18 @@ public class EmployeeService {
         return employees;
     }
 
-   /* public List<Employee> findAllByNameOrLastName(String name, String lastName){
-        List<Employee> employees = repository.findAllByNameOrLastName(name, lastName);
-        return employees;
-    }*/
+    public Employee findByEmail(String email) {
+        Employee employee = repository.findByEmail(email);
+        return employee;
+    }
 
+    public Employee findByPhoneNumber(String phoneNumber) {
+        Employee employee = repository.findByPhoneNumber(phoneNumber);
+        return employee;
+    }
+
+    public List<Employee> findAllByPosition(String position){
+        List<Employee> employees = repository.findAllByPosition(position);
+        return employees;
+    }
 }
