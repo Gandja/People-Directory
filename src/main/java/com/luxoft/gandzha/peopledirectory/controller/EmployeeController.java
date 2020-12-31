@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -40,11 +41,23 @@ public class EmployeeController {
         return employee;
     }
 
-    @GetMapping("/employee/all")
-    public List<Employee> findAllByName(@RequestParam("name") Example<String> name) {
-        List<Employee> employee = service.findAllByName(name);
-        return employee;
+    @GetMapping("/employees/all")
+    public List<Employee> findAllByNameAndLastName(@RequestParam("text") String text) {
+        List<Employee> employees = new ArrayList<>();
+        employees.addAll(service.findAllByName(text));
+        employees.addAll(service.findAllByLastName(text));
+        return employees;
     }
 
+   /* @GetMapping("/employees/all")
+    public List<Employee> findAllByLastName(@RequestParam("name") String lastName) {
+        List<Employee> employees = service.findAllByLastName(lastName);
+        return employees;
+    }
 
+    @GetMapping("/employees/all/name/lastName")
+    public List<Employee> findAllByNameOrLastName(@RequestParam String name, @RequestParam String lastName) {
+        List<Employee> employees = service.findAllByNameOrLastName(name,lastName);
+        return employees;
+    }*/
 }

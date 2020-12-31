@@ -37,8 +37,19 @@ public class EmployeeService {
         return employee;
     }
 
-    public List<Employee> findAllByName(Example<String> name) {
+    public List<Employee> findAllByLastName(String lastName) {
+        List<Employee> employees = repository.findAllByLastName(lastName);
+        return employees;
+    }
+
+    public List<Employee> findAllByName(String name) {
         List<Employee> employees = repository.findAllByName(name);
         return employees;
     }
+
+   /* public List<Employee> findAllByNameOrLastName(String name, String lastName){
+        List<Employee> employees = repository.findAllByNameOrLastName(name, lastName);
+        return employees;
+    }*/
+
 }
