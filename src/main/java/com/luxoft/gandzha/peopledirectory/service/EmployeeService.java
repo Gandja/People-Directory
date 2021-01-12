@@ -12,7 +12,6 @@ public class EmployeeService {
 
     private final EmployeeRepository repository;
 
-    @Autowired
     public EmployeeService(EmployeeRepository repository) {
         this.repository = repository;
     }
@@ -26,37 +25,30 @@ public class EmployeeService {
     }
 
     public List<Employee> findAll() {
-        List<Employee> employees = repository.findAll();
-        return employees;
+        return repository.findAll();
     }
 
     public Employee findByName(String name) {
-        Employee employee = repository.findByName(name);
-        return employee;
+        return repository.findByName(name);
     }
 
     public List<Employee> findAllByLastName(String lastName) {
-        List<Employee> employees = repository.findAllByLastName(lastName);
-        return employees;
+        return repository.findAllByLastName(lastName);
     }
 
     public List<Employee> findAllByName(String name) {
-        List<Employee> employees = repository.findAllByName(name);
-        return employees;
+        return repository.findAllByName(name);
     }
 
     public Employee findByEmail(String email) {
-        Employee employee = repository.findByEmail(email);
-        return employee;
+        return repository.findByEmail(email);
     }
 
     public Employee findByPhoneNumber(String phoneNumber) {
-        Employee employee = repository.findByPhoneNumber(phoneNumber);
-        return employee;
+        return repository.findByPhoneNumber(phoneNumber);
     }
 
-    public List<Employee> findAllByPosition(String position){
-        List<Employee> employees = repository.findAllByPosition(position);
-        return employees;
+    public List<Employee> findAllByPosition(String position) {
+        return repository.findAllByPosition(position);
     }
 }
