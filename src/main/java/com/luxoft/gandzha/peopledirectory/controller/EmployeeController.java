@@ -44,14 +44,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/all")
-    public List<Employee> findAllByNameAndLastName(@RequestParam("text") @NotNull String text) throws ExecutionException, InterruptedException {
-        List<Employee> employees = new ArrayList<>();
+    public List<Employee> findAllByNameAndLastName(@RequestParam("text") @NotNull String text) {
 
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        Future<List<Employee>> future = executorService.submit(() -> service.findAllByName(text));
-        Future<List<Employee>> submit = executorService.submit(() -> service.findAllByLastName(text));
-        employees.addAll(future.get());
-        employees.addAll(submit.get());
-        return employees;
+        return service.findAllByNameAndLastName(text);
     }
 }
