@@ -16,6 +16,8 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
+    @NotEmpty
     private Long id;
 
     @Column(name = "name")

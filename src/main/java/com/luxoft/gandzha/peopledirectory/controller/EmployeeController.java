@@ -6,10 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 @RestController
 public class EmployeeController {
@@ -26,7 +25,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/employee")
-    public void delete(Long id) {
+    public void delete(@Valid @RequestParam Long id) {
         service.delete(id);
     }
 
@@ -43,13 +42,14 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/all")
-    public List<Employee> findAllByNameAndLastName(@NotNull @RequestParam("text") String text) {
-        List<Employee> employees = new CopyOnWriteArrayList<>();
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        executorService.submit(() ->
-                        employees.addAll(service.findAllByLastName(text)),
-                employees.addAll(service.findAllByName(text)));
+    public List<Employee> findAllByNameAndLastName(@NotNull @RequestParam("text") String text) throws ExecutionException, InterruptedException {
+        List<Employee> employees = new ArrayList<>();
 
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        Future<List<Employee>> future = executorService.submit(() -> service.findAllByName(text));
+        Future<List<Employee>> submit = executorService.submit(() -> service.findAllByLastName(text));
+        employees.addAll(future.get());
+        employees.addAll(submit.get());
         return employees;
     }
 }
