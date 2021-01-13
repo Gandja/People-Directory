@@ -20,8 +20,8 @@ public class EmployeeService {
         repository.save(employee);
     }
 
-    public void delete(Employee employee) {
-        repository.delete(repository.findByName(employee.getName()));
+    public void delete(Long id) {
+        repository.delete(repository.getOne(id));
     }
 
     public List<Employee> findAll() {
