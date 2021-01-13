@@ -20,13 +20,15 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee")
-    public void create(@Valid @RequestBody Employee employee) {
+    public String create(@RequestBody @Valid Employee employee) {
         service.save(employee);
+        return "Employee was created";
     }
 
     @DeleteMapping("/employee")
-    public void delete(@Valid @RequestParam Long id) {
+    public String delete(@RequestParam @Valid Long id) {
         service.delete(id);
+        return "Employee was deleted";
     }
 
     @GetMapping("/employees")
@@ -36,13 +38,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee")
-    public Employee findByName(@NotNull @RequestParam("name") String name) {
+    public Employee findByName(@RequestParam("name") @NotNull String name) {
         Employee employee = service.findByName(name);
         return employee;
     }
 
     @GetMapping("/employees/all")
-    public List<Employee> findAllByNameAndLastName(@NotNull @RequestParam("text") String text) throws ExecutionException, InterruptedException {
+    public List<Employee> findAllByNameAndLastName(@RequestParam("text") @NotNull String text) throws ExecutionException, InterruptedException {
         List<Employee> employees = new ArrayList<>();
 
         ExecutorService executorService = Executors.newCachedThreadPool();
