@@ -1,10 +1,9 @@
 package com.luxoft.gandzha.peopledirectory.controller;
 
 import com.luxoft.gandzha.peopledirectory.model.Employee;
-import com.luxoft.gandzha.peopledirectory.service.EmployeeService;
+import com.luxoft.gandzha.peopledirectory.service.EmployeeServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -14,10 +13,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,7 +27,7 @@ public class EmployeeControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    EmployeeService employeeService;
+    EmployeeServiceImpl employeeService;
 
 
     @Test
