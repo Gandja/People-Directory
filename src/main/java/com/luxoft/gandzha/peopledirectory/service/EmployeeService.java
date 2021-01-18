@@ -14,6 +14,8 @@ public interface EmployeeService {
 
     Employee findByName(String name);
 
+    Employee findById(Long id);
+
     List<Employee> findAllByNameAndLastName(String text);
 
     List<Employee> findAllByLastName(String lastName);

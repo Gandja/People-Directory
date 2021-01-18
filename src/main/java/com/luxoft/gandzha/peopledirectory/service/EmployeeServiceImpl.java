@@ -1,12 +1,10 @@
 package com.luxoft.gandzha.peopledirectory.service;
 
+import com.luxoft.gandzha.peopledirectory.exception.NoEntityException;
 import com.luxoft.gandzha.peopledirectory.model.Employee;
 import com.luxoft.gandzha.peopledirectory.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -37,6 +35,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public Employee findByName(String name) {
         return repository.findByName(name);
+    }
+
+    public Employee findById(Long id) {
+        Employee employee = null;
+        try {
+            employee = repository.findById(id).orElseThrow(NoEntityException::new);
+        } catch (NoEntityException e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
+        return employee;
     }
 
     public List<Employee> findAllByNameAndLastName(String text) {

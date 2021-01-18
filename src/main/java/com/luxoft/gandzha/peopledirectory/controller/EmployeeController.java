@@ -23,8 +23,8 @@ public class EmployeeController {
         return "Employee was created";
     }
 
-    @DeleteMapping("/employee")
-    public String delete(@RequestParam @Valid Long id) {
+    @DeleteMapping("/employee/{id}")
+    public String delete(@PathVariable @Valid Long id) {
         service.delete(id);
         return "Employee was deleted";
     }
@@ -37,6 +37,11 @@ public class EmployeeController {
     @GetMapping("/employee")
     public Employee findByName(@RequestParam("name") @NotNull String name) {
         return service.findByName(name);
+    }
+
+    @GetMapping("/employee/{id}")
+    public Employee findById(@PathVariable("id") Long id) {
+        return service.findById(id);
     }
 
     @GetMapping("/employees/all")
